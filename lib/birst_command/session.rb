@@ -39,7 +39,7 @@ module Birst_Command
         cookies: @auth_cookie,
         message: {
           username: @username, 
-          password: decrypt(@password)
+          password: @password #decrypt(@password)
         })
 
       @auth_cookie = response.http.cookies if @auth_cookie.nil?
