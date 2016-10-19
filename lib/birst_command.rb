@@ -4,7 +4,6 @@ require 'openssl'
 require 'base64'
 require 'securerandom'
 require 'json'
-require 'envcrypt'
 require 'configatron/core'
 require 'erb'
 

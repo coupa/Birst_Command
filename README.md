@@ -29,44 +29,14 @@ session:
   wsdl: "https://app2101.bws.birst.com/CommandWebService.asmx?WSDL"
   endpoint: "https://app2101.bws.birst.com/CommandWebService.asmx"
   username: "BirstUsername"
-  password: "EncryptedPassword"
+  password: "BirstPassword"
   soap_log: true
   soap_log_level: :debug
 ````
 Save it to `$HOME/.birstcl`.  Most users should only need to modify
 the username and password. (**Note**: do not use `login.bws.birst.com`
 since it does not use an updated WSDL; a specific app server must be
-specified).  Since I have a strong aversion to storing passwords in
-plaintext, the password in the config file needs to use and encrypted
-password.  Birst Command comes bundled with a password encryptor
-called [Envcrypt](https://github.com/gnilrets/envcrypt) that can be
-executed via
-
-````bash
-$ envcrypt -s mypassword
-````
-
-which should give an output similar to
-````
-Encrypted Secret: 2KwUMeJIqsjPWWF9Fw0I+w==
-ENVCRYPT_KEY='V/V919RKnz8l2M002336bg==$ARoQfp/9pfv5kVN/ysRuStLuTWJFZhQF1f49xkHbcwQ=$YAjVhHOXlcagmZoFYgPWdQ=='
-WARNING: It is critical that the key and encryption password be stored separately!
-````
-
-Copy and paste the encrypted password (aka "secret') into the
-`$HOME/.birstcl` config file.  You will also need to ensure that the
-`ENVCRYPT_KEY` environment variable is set as indicated above.  If you're
-running in a development environment, you can include these in your
-bash `~/.profile` file.
-
-Also note that the YAML config file is pre-processed with ERB.  So if
-you also want to keep your encrypted password in an environment
-variable, you could replace the `password` line above with
-````yaml
-  ...
-  password: "<%= ENV['MY_ENCRYPTED_PASSWORD'] %>"
-  ...
-````
+specified).  
 
 # Usage - Birst command line tool
 
