@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '~> 2'
   s.add_runtime_dependency "savon", ["~> 2.5"]
   s.add_runtime_dependency "httpclient", ["~> 2.3"]
-  s.add_runtime_dependency "envcrypt", ["~> 0.1"]
   s.add_runtime_dependency "configatron", ["~> 3.2"]
 
   s.files         = `git ls-files`.split("\n")

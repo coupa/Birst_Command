@@ -11,7 +11,7 @@ module Birst_Command
     # soap_logger    - Logger instance used to write log messages (default: Settings.session.soap_logger)
     # soap_log_level - Logging level (default: Settings.session.soap_log_level)
     # username       - Username to use to login to Birst Web Services (default: Settings.session.username)
-    # password       - Encrypted password for username (default: Settings.session.password)
+    # password       - Password for username (default: Settings.session.password)
     # auth_cookie    - Use a previously generated authorization cookie
     #
     # Returns nothing
@@ -39,7 +39,7 @@ module Birst_Command
         cookies: @auth_cookie,
         message: {
           username: @username, 
-          password: decrypt(@password)
+          password: @password
         })
 
       @auth_cookie = response.http.cookies if @auth_cookie.nil?
@@ -120,17 +120,6 @@ module Birst_Command
       login
       yield self
       logout
-    end
-
-
-    # Private: Decrypt encrypted password (via Envcrypt).
-    #
-    # password - encrypted password.
-    #
-    # Returns decrypted password.
-    def decrypt(password)
-      crypt = Envcrypt::Envcrypter.new
-      crypt.decrypt(password)
     end
   end
 end
